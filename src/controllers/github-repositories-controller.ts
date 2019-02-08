@@ -1,7 +1,7 @@
 import {NextFunction, Request, Response} from "express-serve-static-core";
-import {GithubService} from "../api/githubService";
 import {IHttpErrorGithubResponse} from "../api/models/Generic/Http";
 import {IGithubRepository} from "../api/models/Github/GithubRepos";
+import {GithubService} from "../api/services/github-service";
 
 const githubService = new GithubService();
 

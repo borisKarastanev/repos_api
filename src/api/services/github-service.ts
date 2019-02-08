@@ -1,5 +1,5 @@
 import request = require("request-promise-native");
-import {IGithubRepository} from "./models/Github/GithubRepos";
+import {IGithubRepository} from "../models/Github/GithubRepos";
 
 export class GithubService {
     private defaultHeaders = {
