@@ -1,15 +1,17 @@
 import * as crypto from "crypto";
-import * as jwt from "jsonwebtoken";
 import {IHttpErrorResponse} from "../models/Generic/Http";
 
 export class SecureService {
+    constructor(private jwt: any) {}
+
+
     public verifyToken(token: string, secret: any) {
         if (!token || !secret) {
             return Promise.reject("Cannot perform verification!");
         }
 
         try {
-            const decoded = jwt.verify(token, secret);
+            const decoded = this.jwt.verify(token, secret);
             return Promise.resolve(decoded);
         } catch (verifyTokenError) {
             // TODO Write actual falure in the log
@@ -48,7 +50,7 @@ export class SecureService {
         return Promise.resolve(salt);
     }
 
-    private generateHashedPassword(password: string, salt: string) {
+    public generateHashedPassword(password: string, salt: string) {
         const hash = crypto.createHmac("sha512", salt);
         hash.update(password);
 
